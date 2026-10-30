@@ -66,7 +66,7 @@ ul, ol { padding: 0; list-style: none; }
 .hd__menu { background: none; border: 0; padding: 8px; margin-left: -8px; display: none; touch-action: manipulation; }
 .hd__menu .ic { width: 24px; height: 24px; }
 .logo { display: inline-flex; align-items: center; flex: none; }
-.logo__img { display: block; width: auto; height: 36px; }
+.logo__img { display: block; width: auto; height: 38px; }
 .gnb { flex: 1; min-width: 0; align-self: stretch; }
 .gnb__in { display: flex; align-items: stretch; height: 100%; gap: clamp(20px, 2.4vw, 36px); overflow-x: auto; scrollbar-width: none; }
 .gnb__in::-webkit-scrollbar { display: none; }
@@ -409,6 +409,7 @@ main:has(.cta) + .ft { margin-top: 0; border-top: 0; }
 .faq-posts li a:active .faq-posts__t { color: var(--brand); }
 @media (hover: hover) and (pointer: fine) { .faq-posts li a:hover .faq-posts__t { text-decoration: underline; text-underline-offset: 3px; } }
 .faq-group + .faq-posts { margin-top: -36px; margin-bottom: 36px; }
+.faq > .faq-posts { margin: 0; }
 
 .buybar { display: none; }
 
@@ -535,7 +536,7 @@ main:has(.cta) + .ft { margin-top: 0; border-top: 0; }
   .hd__in { flex-wrap: wrap; height: auto; gap: 0; }
   .hd__in > .hd__menu, .hd__in > .logo, .hd__in > .hd__util { height: var(--hd-h); display: flex; align-items: center; }
   .logo { position: absolute; left: 50%; transform: translateX(-50%); top: 0; }
-  .logo__img { height: 28px; }
+  .logo__img { height: 30px; }
   .hd__in { position: relative; }
   .hd__util { margin-left: auto; }
   .hd__link span:not(.cart-count) { display: none; }
@@ -664,3 +665,11 @@ main:has(.cta) + .ft { margin-top: 0; border-top: 0; }
   .phd--flow { align-items: flex-start; flex-direction: column; gap: 8px; }
   .flow { font-size: 13px; }
 }
+
+/* 팁 글: 요약 먼저, 표는 모바일에서 가로 스크롤 */
+.prose .tldr { padding: 16px 18px; border-radius: var(--r-lg); background: var(--brand-soft); border: 1px solid #d9e1f7; color: var(--ink); font-size: 15px; line-height: 1.7; }
+.prose .tldr b { display: block; margin-bottom: 4px; color: var(--brand); font-size: 13px; }
+.prose .table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.prose .table table { min-width: 520px; }
+.prose h3 { font-size: 17px; }
+.prose--article h2 { scroll-margin-top: calc(var(--hd-h) + 16px); }

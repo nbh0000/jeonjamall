@@ -711,3 +711,118 @@ main:has(.cta) + .ft { margin-top: 0; border-top: 0; }
 .toc a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; }
 h2.count { font-size: 14px; font-weight: 500; color: var(--mute); margin: 4px 0 14px; letter-spacing: 0; }
 .toc ul { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0; padding: 0; list-style: none; }
+
+/* ── 상세페이지 공통 구역 (디자인 1차): 문서처럼 나열된 구역을 상세페이지 이야기 흐름으로 ── */
+.detail .dsec { max-width: 880px; padding-top: clamp(56px, 6vw, 88px); }
+.detail .dsec__eyebrow { color: var(--brand); font-weight: 700; font-size: 13px; letter-spacing: 0; }
+.detail .dsec__title { font-size: clamp(22px, 1.4vw + 16px, 30px); line-height: 1.35; letter-spacing: -0.03em; font-weight: 800; }
+.detail .dsec__sub { font-size: 16px; line-height: 1.7; max-width: 60ch; }
+.detail .dsec__title .hl { font-style: normal; color: var(--red); }
+/* 이야기 구역은 가운데 정렬 */
+.detail .summary-block, .detail .dsec--text, .detail .dsec:has(.steps), .detail .dsec:has(.cmp) { text-align: center; }
+.detail .summary-block .dsec__title, .detail .dsec--text .dsec__sub, .detail .dsec:has(.steps) .dsec__sub, .detail .dsec:has(.cmp) .dsec__sub { margin-left: auto; margin-right: auto; }
+
+/* 약속 4가지: 아이콘 타일 */
+.detail .promise { grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; text-align: center; }
+.detail .promise__item { flex-direction: column; align-items: center; gap: 12px; padding: 24px 14px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.detail .promise__item:first-child { padding-left: 14px; border-left: 1px solid var(--line); }
+.detail .promise__icon { width: 52px; height: 52px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); padding: 0; }
+.detail .promise__icon .ic { width: 24px; height: 24px; }
+.detail .promise__item strong { font-size: 16px; font-weight: 700; }
+.detail .promise__item p { font-size: 13px; line-height: 1.55; }
+
+/* 77% 할인: 강조 패널 */
+.detail .dsec--text .dsec__in { padding: clamp(32px, 4vw, 52px) clamp(20px, 4vw, 48px); border-radius: 18px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff 0%, #f4f6fb 100%); }
+.detail .dsec--text .dsec__title { font-size: clamp(26px, 2.4vw + 14px, 40px); }
+.detail .dsec--text .dsec__title br { display: inline; }
+.detail .dsec--text .dsec__sub { margin-top: 14px; }
+
+/* 당일 출고: 번호 원 + 연결선 타임라인 */
+.detail .steps { position: relative; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px; border: 0; }
+.detail .steps::before { content: ""; position: absolute; top: 22px; left: 16.66%; right: 16.66%; height: 2px; background: var(--line-2); }
+.detail .steps__item { position: relative; flex-direction: column; align-items: center; gap: 12px; padding: 0 10px; border: 0; text-align: center; }
+.detail .steps__item:first-child { padding-left: 10px; }
+.detail .steps__no { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: #fff; font-size: 14px; font-weight: 700; box-shadow: 0 0 0 6px #fff; }
+.detail .steps__item strong { font-size: 17px; font-weight: 700; }
+.detail .steps__item p { font-size: 14px; }
+
+/* 등급 비교: 위쪽 색 띠가 있는 카드 */
+.detail .cmp { gap: 14px; border: 0; margin-top: 32px; text-align: left; }
+.detail .cmp__card { border: 1px solid var(--line); border-radius: 14px; padding: 22px 20px 20px; border-top-width: 4px; }
+.detail .cmp__card:first-child { padding-left: 20px; border-left: 1px solid var(--line); }
+.detail .cmp__card--0 { border-top-color: var(--brand); }
+.detail .cmp__card--1 { border-top-color: var(--ink-2); }
+.detail .cmp__card--2 { border-top-color: var(--amber); }
+.detail .cmp__hd h3 { font-size: 22px; font-weight: 800; }
+.detail .cmp__tag { display: inline-block; width: max-content; padding: 2px 8px; border-radius: 4px; background: var(--soft); color: var(--ink-2); font-size: 12px; font-weight: 600; }
+.detail .cmp__card--0 .cmp__tag { background: var(--brand-soft); color: var(--brand); }
+.detail .cmp__title { font-size: 16px; font-weight: 700; margin-top: 4px; }
+.detail .dnote { text-align: left; }
+
+@media (max-width: 768px) {
+  .detail .promise { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .detail .promise__item { padding: 18px 10px; }
+  .detail .steps { grid-template-columns: 1fr; gap: 18px; text-align: left; }
+  .detail .steps::before { top: 23px; bottom: 23px; left: 22px; right: auto; width: 2px; height: auto; }
+  .detail .steps__item { flex-direction: row; align-items: center; text-align: left; padding: 0; gap: 14px; }
+  .detail .steps__item:first-child { padding-left: 0; }
+  .detail .cmp { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .detail .cmp__card { display: flex; flex-direction: column; gap: 6px; }
+  .detail .cmp__hd h3 { white-space: nowrap; }
+}
+
+/* ── 디자인 2차 ── */
+/* 메인 '전자몰의 약속': 상세와 같은 아이콘 타일 */
+.sec .promise { gap: 12px; }
+.sec .promise__item, .sec .promise__item:first-child { flex-direction: column; gap: 12px; padding: 22px 18px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.sec .promise__icon { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-soft); color: var(--brand); padding: 0; }
+.sec .promise__item strong { font-size: 16px; font-weight: 700; }
+.sec .promise__item p { font-size: 13px; line-height: 1.55; }
+@media (max-width: 768px) {
+  .sec .promise { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sec .promise__item, .sec .promise__item:first-child { padding: 16px 14px; gap: 10px; }
+}
+
+/* 카테고리 모델번호 표: 모바일은 행마다 카드 */
+@media (max-width: 640px) {
+  .cat-table .table { overflow: visible; }
+  .cat-table table, .cat-table tbody, .cat-table tr, .cat-table th, .cat-table td { display: block; min-width: 0; width: 100%; }
+  .cat-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .cat-table tr { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px; }
+  .cat-table th, .cat-table td { border: 0; padding: 0; }
+  .cat-table th[scope="row"] { font-size: 15px; margin-bottom: 4px; }
+  .cat-table td { font-size: 13px; color: var(--ink-2); }
+  .cat-table td:last-child { margin-top: 4px; font-weight: 700; color: var(--ink); font-size: 14px; }
+}
+
+/* ── 디자인 3차 ── */
+/* 상세 구역 제목은 모두 가운데로 통일 (표·FAQ 내용은 왼쪽) */
+.detail .dsec > .dsec__eyebrow, .detail .dsec > .dsec__title, .detail .dsec > .dsec__sub,
+.detail .dsec > div > .dsec__eyebrow, .detail .dsec > div > .dsec__title, .detail .dsec > div > .dsec__sub { text-align: center; margin-left: auto; margin-right: auto; }
+.detail .dsec .dtable-wrap, .detail .dsec .faq, .detail .dsec .dnote { text-align: left; }
+.detail #reviews .dsec__title, .detail #faq .dsec__title { text-align: center; }
+
+/* 글 속 표: 모바일은 행마다 카드 */
+@media (max-width: 640px) {
+  .prose .table { overflow: visible; }
+  .prose .table table, .prose .table tbody, .prose .table tr, .prose .table th, .prose .table td { display: block; min-width: 0; width: 100%; }
+  .prose .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .prose .table caption { display: block; }
+  .prose .table tr { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px; }
+  .prose .table th, .prose .table td { border: 0; padding: 0; background: none; }
+  .prose .table th[scope="row"] { font-size: 15px; margin-bottom: 4px; }
+  .prose .table td { font-size: 14px; color: var(--ink-2); }
+  .prose .table td + td { margin-top: 2px; }
+}
+
+/* 글 상단 작성자, 다른 팁 목록 */
+.article__more ul { border-top: 1px solid var(--ink); }
+.article__more li { padding: 0; border-bottom: 1px solid var(--line); }
+.article__more a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 12px 2px; text-decoration: none; color: var(--ink); font-weight: 500; }
+.article__more a::after { content: "›"; color: var(--mute); font-size: 20px; line-height: 1; }
+@media (hover: hover) and (pointer: fine) { .article__more a:hover { color: var(--brand); } }
+.article__byline { font-weight: 600; color: var(--ink-2); }
+.dsec--notice > .dsec__title { text-align: center; }

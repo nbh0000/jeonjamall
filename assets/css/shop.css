@@ -826,3 +826,12 @@ h2.count { font-size: 14px; font-weight: 500; color: var(--mute); margin: 4px 0 
 @media (hover: hover) and (pointer: fine) { .article__more a:hover { color: var(--brand); } }
 .article__byline { font-weight: 600; color: var(--ink-2); }
 .dsec--notice > .dsec__title { text-align: center; }
+
+/* 메뉴 가운데 정렬 (넘치면 왼쪽부터 스크롤) */
+.gnb__in { justify-content: safe center; }
+@media (min-width: 769px) {
+  .hd__in { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .hd__in > .logo { justify-self: start; }
+  .gnb { flex: none; }
+  .hd__util { justify-self: end; }
+}

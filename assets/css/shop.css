@@ -835,3 +835,10 @@ h2.count { font-size: 14px; font-weight: 500; color: var(--mute); margin: 4px 0 
   .gnb { flex: none; }
   .hd__util { justify-self: end; }
 }
+/* 적립금 */
+.pts { display: flex; gap: 8px; align-items: flex-end; }
+.pts .field { flex: 1; margin: 0; }
+.pts .btn { height: 50px; flex: none; }
+.pts input:disabled { background: var(--soft); color: var(--mute); }
+.sumbox__note { margin: 0; font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+.sumbox [data-points-row] dd { color: var(--red); }

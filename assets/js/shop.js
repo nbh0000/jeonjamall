@@ -221,6 +221,40 @@
     co.addEventListener('submit', (e) => {
       if (!$('[data-zip]', co).value) { e.preventDefault(); toast('주소 찾기로 배송지를 입력해 주세요.'); }
     });
+    // 적립금: 이름·휴대폰으로 잔액 조회 → 상품금액 안에서 사용
+    const use = $('[data-points-use]', co);
+    if (use) {
+      const won = (n) => n.toLocaleString('ko-KR') + '원';
+      const totalEl = $('[data-total]', co);
+      const base = Number(totalEl.dataset.total), items = Number(totalEl.dataset.items);
+      const msg = $('[data-points-msg]', co);
+      const apply = () => {
+        const max = Number(use.max) || 0;
+        let v = Math.max(0, Math.min(max, Math.floor(Number(use.value) || 0)));
+        if (String(v) !== use.value) use.value = v;
+        $('[data-points-row]', co).hidden = v === 0;
+        $('[data-points-amt]', co).textContent = '-' + won(v);
+        totalEl.textContent = won(base - v);
+        $('[data-pay-amt]', co).textContent = won(base - v);
+      };
+      use.addEventListener('input', apply);
+      use.addEventListener('change', apply);
+      $('[data-points-check]', co).addEventListener('click', async () => {
+        const name = co.elements.buyer_name.value.trim(), phone = co.elements.phone.value.trim();
+        if (!name || !phone) { msg.textContent = '주문자 이름과 휴대폰 번호를 먼저 입력해 주세요.'; return; }
+        const fd = new FormData();
+        fd.append('_csrf', co.elements._csrf.value); fd.append('name', name); fd.append('phone', phone);
+        try {
+          const r = await fetch('/points', { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then((x) => x.json());
+          if (!r.ok) { msg.textContent = r.message || '조회하지 못했습니다.'; return; }
+          const max = Math.min(r.balance, items);
+          use.max = max; use.disabled = max === 0;
+          if (max > 0) { use.value = max; msg.textContent = '사용 가능한 적립금 ' + won(r.balance) + (r.balance > items ? ' (이번 주문에는 상품금액 ' + won(items) + '까지)' : ''); }
+          else { use.value = 0; msg.textContent = '사용할 수 있는 적립금이 없습니다.'; }
+          apply();
+        } catch { msg.textContent = '조회하지 못했습니다. 잠시 후 다시 시도해 주세요.'; }
+      });
+    }
   }
 
   // ── 토스페이먼츠 결제창 ─────────────────────

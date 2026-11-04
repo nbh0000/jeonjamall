@@ -842,3 +842,6 @@ h2.count { font-size: 14px; font-weight: 500; color: var(--mute); margin: 4px 0 
 .pts input:disabled { background: var(--soft); color: var(--mute); }
 .sumbox__note { margin: 0; font-size: 13px; line-height: 1.55; color: var(--ink-2); }
 .sumbox [data-points-row] dd { color: var(--red); }
+/* 로고: 전자몰 + JEONJAMALL 두 줄 */
+.logo__img { height: 48px; }
+@media (max-width: 768px) { .logo__img { height: 40px; } }
